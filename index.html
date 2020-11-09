@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Smart House Control Panel 2D</title>
+    <link href="site.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="row">
+        <div class="column">
+            <div class="cp-container">
+                <img src="images/lightoff.png" class="cp-light" style="left: 656px; top: 175px"
+                    onclick="toggleLight(this)" />
+                <img src="images/lightoff.png" class="cp-light" style="left: 876px; top: 292px"
+                    onclick="toggleLight(this)" />
+                <img src="images/lightoff.png" class="cp-light" style="left: 680px; top: 292px"
+                    onclick="toggleLight(this)" />
+                <img src="images/lightoff.png" class="cp-light" style="left: 766px; top: 564px"
+                    onclick="toggleLight(this)" />
+                <img src="images/lightoff.png" class="cp-light" style="left: 556px; top: 292px"
+                    onclick="toggleLight(this)" />
+                <img src="images/lightoff.png" class="cp-light" style="left: 468px; top: 175px"
+                    onclick="toggleLight(this)" />
+                <img src="images/lightoff.png" class="cp-light" style="left: 352px; top: 175px"
+                    onclick="toggleLight(this)" />
+
+                <img src="images/cooloff.png" class="cp-cool" style="left: 600px; top: 175px"
+                    onclick="toggleCool(this)" />
+                <img src="images/cooloff.png" class="cp-cool" style="left: 820px; top: 292px"
+                    onclick="toggleCool(this)" />
+                <img src="images/cooloff.png" class="cp-cool" style="left: 710px; top: 564px"
+                    onclick="toggleCool(this)" />
+
+                <img id="all-light" src="images/lightoff.png" class="cp-all" style="left: 160px; top: 300px"
+                    onclick="turnOffLight()" />
+                <img id="all-cool" src="images/cooloff.png" class="cp-all" style="left: 104px; top: 300px"
+                    onclick="turnOffCool()" />
+            </div>
+        </div>
+        <iframe id="survey" src="https://forms.gle/frrcYThvSG5Rp4Y4A"></iframe>
+    </div>
+
+    <script>
+        const light_on = "images/lighton.png";
+        const light_off = "images/lightoff.png";
+        const cool_on = "images/coolon.png";
+        const cool_off = "images/cooloff.png";
+
+        function toggleLight(elem) {
+            elem.src = elem.src.includes("lightoff") ? light_on : light_off;
+            document.getElementById("all-light").src = hasItems("cp-light", "lighton") ? light_on : light_off;
+        }
+        function toggleCool(elem) {
+            elem.src = elem.src.includes("cooloff") ? cool_on : cool_off;
+            document.getElementById("all-cool").src = hasItems("cp-cool", "coolon") ? cool_on : cool_off;
+        }
+        function turnOffLight() {
+            var lights = document.getElementsByClassName("cp-light");
+            for (i = 0; i < lights.length; i++) {
+                lights[i].src = light_off;
+            }
+            document.getElementById("all-light").src = light_off;
+        }
+        function turnOffCool() {
+            var cools = document.getElementsByClassName("cp-cool");
+            for (i = 0; i < cools.length; i++) {
+                cools[i].src = cool_off;
+            }
+            document.getElementById("all-cool").src = cool_off;
+        }
+        function hasItems(sc, state) {
+            var items = document.getElementsByClassName(sc);
+            for (i = 0; i < items.length; i++) {
+                if (items[i].src.includes(state))
+                    return true;
+            }
+            return false;
+        }
+    </script>
+
+</body>
+
+</html>
